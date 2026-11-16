@@ -56,6 +56,10 @@ document.addEventListener('submit',function(e){if(e.target&&e.target.id==='cform
 .cform .btn{cursor:pointer;font-size:16px}
 .note{margin:16px 0 0;font-size:14.5px;color:var(--muted)}
 .note.ok{color:#166A43}
+.note.bad{color:#C2341C}
+.note:empty{display:none}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.cform .btn[disabled]{opacity:.6;cursor:progress}
 @media (max-width:900px){.cgrid{grid-template-columns:1fr}.cpage{padding-top:120px}}
 </style>
 </head>
@@ -94,8 +98,9 @@ document.addEventListener('submit',function(e){if(e.target&&e.target.id==='cform
         <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="e-email"><span class="err" id="e-email"></span></div>
       <div class="field"><label for="f-msg">Your message <i aria-hidden="true">*</i></label>
         <textarea id="f-msg" name="message" required aria-describedby="e-msg"></textarea><span class="err" id="e-msg"></span></div>
+      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn primary" type="submit">Send message</button>
-      <p class="note" id="f-note" role="status" aria-live="polite">This opens your email app with your message ready to send.</p>
+      <p class="note" id="f-note" role="status" aria-live="polite"></p>
     </form>
   </div>
 </section>
@@ -111,9 +116,18 @@ document.addEventListener('submit',function(e){if(e.target&&e.target.id==='cform
     var n=f.elements.name,m=f.elements.email,t=f.elements.message;
     var ok=[check(n,'Please enter your name.'),check(m,'Please enter a valid email address.'),check(t,'Please enter a message.')];
     if(ok.indexOf(false)>-1){f.querySelector('[aria-invalid=true]').focus();return;}
-    var body=t.value.trim()+'\n\n— '+n.value.trim()+' ('+m.value.trim()+')';
-    location.href='mailto:jc_russell@live.com?subject='+encodeURIComponent('Portfolio inquiry from '+n.value.trim())+'&body='+encodeURIComponent(body);
-    note.className='note ok';note.textContent='Your email app should open with the message ready. If it doesn’t, email me directly at jc_russell@live.com.';
+    var btn=f.querySelector('button[type=submit]');
+    if(f.elements.botcheck.checked)return;
+    btn.disabled=true;btn.textContent='Sending…';note.className='note';note.textContent='';
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+      body:JSON.stringify({access_key:'215dc960-900b-43cb-8003-c7a5a695b106',subject:'Portfolio inquiry from '+n.value.trim(),from_name:'joshua-russell.com',
+        name:n.value.trim(),email:m.value.trim(),replyto:m.value.trim(),message:t.value.trim(),botcheck:false})})
+    .then(function(r){return r.json();})
+    .then(function(d){if(!d.success)throw new Error(d.message||'failed');
+      f.reset();note.className='note ok';note.textContent='Thanks! Your message is on its way. I’ll be in touch soon.';
+      if(window.gtag)gtag('event','contact_form_sent',{page:location.pathname});})
+    .catch(function(){note.className='note bad';note.textContent='Sorry, something went wrong sending your message. Please email me directly at jc_russell@live.com.';})
+    .finally(function(){btn.disabled=false;btn.textContent='Send message';});
   });
 })();
 </script>
