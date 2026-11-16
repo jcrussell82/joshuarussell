@@ -52,8 +52,13 @@
   /* click any chapter graphic to see it larger */
   var lb=document.querySelector('.lightbox');
   if(lb){var li=lb.querySelector('img'),last=null;
-    function close(){lb.hidden=true;li.src='';if(last)last.focus();}
-    document.querySelectorAll('.zoom').forEach(function(b){b.addEventListener('click',function(){last=b;li.src=b.dataset.full;li.alt=b.querySelector('img').alt;lb.hidden=false;lb.querySelector('.lb-close').focus();});});
+    var lv=lb.querySelector('video');
+    function close(){lb.hidden=true;li.src='';if(lv){lv.pause();lv.removeAttribute('src');lv.load();lv.hidden=true;}li.hidden=false;if(last)last.focus();}
+    document.querySelectorAll('.zoom').forEach(function(b){b.addEventListener('click',function(){last=b;li.hidden=false;li.src=b.dataset.full;li.alt=b.querySelector('img').alt;lb.hidden=false;lb.querySelector('.lb-close').focus();});});
+    if(lv){lv.addEventListener('click',function(e){e.stopPropagation();});
+      document.querySelectorAll('.vplay').forEach(function(b){b.addEventListener('click',function(){last=b;li.hidden=true;lv.hidden=false;lv.src=b.dataset.video;
+        lv.setAttribute('aria-label',b.getAttribute('aria-label').replace(/^Play /,'').replace(/ with sound$/,''));lb.hidden=false;lv.play().catch(function(){});lb.querySelector('.lb-close').focus();
+        if(window.gtag)gtag('event','video_play',{video:b.dataset.video,page:location.pathname});});});}
     lb.addEventListener('click',close);addEventListener('keydown',function(e){if(e.key==='Escape'&&!lb.hidden)close();});}
   /* animated gradient: 3D simplex noise drives the alpha of a #b3cbf9 field on a low-res canvas */
   (function(){

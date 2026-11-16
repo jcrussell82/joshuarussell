@@ -322,3 +322,14 @@ html.h-on .work.no-intro .hscroll{margin-top:-96px}
 .b-media .zoom{background:var(--mist);border-radius:22px;padding:clamp(8px,1.2vw,16px)}
 .b-media img{border-radius:12px;mix-blend-mode:multiply}
 @media (max-width:860px){.b-row,.b-row.flip{grid-template-columns:1fr}.b-row.flip .b-copy{order:0}}
+
+/* snapshot: allow wrapping on small screens */
+@media (max-width:900px){.snap .item:first-child{white-space:normal}}
+/* play-with-sound overlay on portrait videos */
+.vplay{position:absolute;inset:0;border:0;background:transparent;cursor:pointer;display:grid;place-items:center;padding:0;border-radius:inherit}
+.vplay-btn{display:flex;align-items:center;gap:9px;background:rgba(20,27,54,.85);color:#fff;font:600 14.5px var(--head);padding:12px 20px 12px 16px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:transform .25s,background .25s}
+.vplay-btn svg{width:20px;height:20px}
+.vplay:hover .vplay-btn,.vplay:focus-visible .vplay-btn{transform:scale(1.06);background:var(--blue)}
+.vplay:focus-visible{outline:3px solid var(--blue);outline-offset:4px}
+.lightbox video{max-width:calc(100vw - 8vw);max-height:calc(100vh - 8vw);border-radius:12px;background:#000;cursor:auto}
+.lightbox video[hidden],.lightbox img[hidden]{display:none}
