@@ -299,6 +299,28 @@ header.site .wrap,.sc,.seg{box-shadow:none!important}
   .archive li a{grid-template-columns:1fr;gap:4px}
   nav ul li:not(:last-child){display:none}
 }
+
+/* EXPERIMENT: typographic ticker behind the closing CTA. Tune with the variables below; delete this block + the markup block to remove. */
+.contact{position:relative;overflow:hidden;isolation:isolate}
+.contact>.wrap{position:relative;z-index:1}
+.ticker{--tk-size:clamp(64px,8.6vw,134px);--tk-ink:#F4F7FF;--tk-hl:rgba(72,111,238,.12);--tk-speed:110s;
+  position:absolute;inset:0;z-index:0;display:flex;flex-direction:column;justify-content:center;gap:0;padding-bottom:.2em;pointer-events:none;user-select:none;
+  font:700 var(--tk-size)/1.04 var(--head);letter-spacing:-.025em;color:var(--tk-ink);
+  -webkit-mask-image:radial-gradient(ellipse 46% 52% at 50% 50%,rgba(0,0,0,.28),#000 78%);mask-image:radial-gradient(ellipse 46% 52% at 50% 50%,rgba(0,0,0,.28),#000 78%)}
+.tk-row{white-space:nowrap}
+.tk-track{display:flex;width:max-content;will-change:transform;animation:tk-left var(--tk-speed) linear infinite}
+.tk-track>div{display:flex}
+.tk-track span{padding-right:.42em}
+.tk-track .hl{color:var(--tk-hl)}
+.tk-row:nth-child(odd) .tk-track{animation-name:tk-right}
+.tk-row:nth-child(2) .tk-track{animation-duration:calc(var(--tk-speed)*1.18)}
+.tk-row:nth-child(3) .tk-track{animation-duration:calc(var(--tk-speed)*.92)}
+.tk-row:nth-child(4) .tk-track{animation-duration:calc(var(--tk-speed)*1.3)}
+@keyframes tk-left{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@keyframes tk-right{from{transform:translate3d(-50%,0,0)}to{transform:translate3d(0,0,0)}}
+@media (max-width:700px){.ticker{--tk-size:56px;--tk-speed:150s;justify-content:space-evenly}}
+@media (prefers-reduced-motion:reduce){.tk-track{animation:none!important;transform:translate3d(-12%,0,0)}}
+/* /EXPERIMENT */
 </style>
 <!-- Google Analytics (GA4) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JDF6C87JWF"></script>
@@ -533,6 +555,9 @@ document.addEventListener('submit',function(e){if(e.target&&e.target.id==='cform
 </section>
 
 <section id="contact" class="contact" aria-labelledby="h-contact">
+  <!-- EXPERIMENT: typographic ticker background (delete this block + the CSS block marked EXPERIMENT to remove) -->
+  <div class="ticker" aria-hidden="true"><div class="tk-row"><div class="tk-track"><div><span>Challenge</span><span>Clarity</span><span class=hl>Systems</span><span>Design</span><span>Direction</span><span>Product</span></div><div><span>Challenge</span><span>Clarity</span><span class=hl>Systems</span><span>Design</span><span>Direction</span><span>Product</span></div></div></div><div class="tk-row"><div class="tk-track"><div><span>Strategy</span><span>Identity</span><span>Complex</span><span class=hl>Experience</span><span>Clarity</span><span>Design</span></div><div><span>Strategy</span><span>Identity</span><span>Complex</span><span class=hl>Experience</span><span>Clarity</span><span>Design</span></div></div></div><div class="tk-row"><div class="tk-track"><div><span>Product</span><span class=hl>Direction</span><span>Challenge</span><span>Systems</span><span>Strategy</span><span>Identity</span></div><div><span>Product</span><span class=hl>Direction</span><span>Challenge</span><span>Systems</span><span>Strategy</span><span>Identity</span></div></div></div><div class="tk-row"><div class="tk-track"><div><span>Experience</span><span>Design</span><span class=hl>Clarity</span><span>Complex</span><span>Product</span><span>Direction</span></div><div><span>Experience</span><span>Design</span><span class=hl>Clarity</span><span>Complex</span><span>Product</span><span>Direction</span></div></div></div></div>
+  <!-- /EXPERIMENT -->
   <div class="wrap">
     
     <h2 id="h-contact">The best work starts with a challenge.</h2>
