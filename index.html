@@ -137,6 +137,7 @@ a.feature{text-decoration:none;color:inherit}
 .feature p{margin:0 0 20px;max-width:46ch}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;padding:0;list-style:none}
 .chips li{font:500 13px var(--head);color:var(--ink);background:var(--mist);padding:6px 12px;border-radius:999px}
+@media (max-width:420px){.chips li{font-size:12.5px;padding:6px 10px}}
 .more{font:600 15px var(--head);color:var(--blue);display:inline-flex;gap:8px;align-items:center}
 .more::after{content:"→";transition:transform .25s}
 a:hover .more::after{transform:translateX(4px)}
@@ -426,7 +427,7 @@ document.addEventListener('submit',function(e){if(e.target&&e.target.id==='cform
           <div class="num">Operations platform</div>
           <h3>651 Carpets</h3>
           <p>Four disconnected legacy systems — ledger, orders, inventory and invoicing — rethought as one platform with a single navigation and a consistent set of patterns.</p>
-          <ul class="chips"><li>Information architecture</li><li>Systems consolidation</li><li>80-screen prototype</li></ul>
+          <ul class="chips"><li>Information architecture</li><li>Systems consolidation</li></ul>
           <span class="more">View case study</span>
         </div>
         <div class="sc-media"><img src="img/carpets.webp" alt="651 Carpets operations platform screens" loading="lazy"></div>
@@ -436,7 +437,7 @@ document.addEventListener('submit',function(e){if(e.target&&e.target.id==='cform
           <div class="num">Product redesign</div>
           <h3>CBRE SignVault</h3>
           <p>A self-initiated redesign of CBRE's sign-management portal, built from first-hand knowledge of where the workflow broke down: ordering, mapping, inventory and reporting, with light and dark themes.</p>
-          <ul class="chips"><li>Workflow redesign</li><li>Data-dense UI</li><li>Coded prototype</li></ul>
+          <ul class="chips"><li>Workflow redesign</li><li>Data-dense UI</li></ul>
           <span class="more">View case study</span>
         </div>
         <div class="sc-media"><video muted loop playsinline preload="none" poster="img/signvault-tour-poster.webp" data-src="video/signvault-tour.mp4" aria-label="Walkthrough of the SignVault redesign prototype"></video><span class="tag"><i></i>Coded prototype</span></div>
