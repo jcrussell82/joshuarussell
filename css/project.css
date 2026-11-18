@@ -333,3 +333,9 @@ html.h-on .work.no-intro .hscroll{margin-top:-96px}
 .vplay:focus-visible{outline:3px solid var(--blue);outline-offset:4px}
 .lightbox video{max-width:calc(100vw - 8vw);max-height:calc(100vh - 8vw);border-radius:12px;background:#000;cursor:auto}
 .lightbox video[hidden],.lightbox img[hidden]{display:none}
+/* three equal columns that stay three until phone width (Goals interaction section) */
+@media (max-width:999px){.gallery.trio{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:640px){.gallery.trio{grid-template-columns:1fr}}
+.sec.alt .gi.flush .zoom{background:none}
+.gallery.trio .gi figcaption{margin-top:6px}
+.gallery.trio .gi figcaption b{display:block;margin:0 0 6px}
