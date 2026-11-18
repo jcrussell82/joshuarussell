@@ -338,4 +338,4 @@ html.h-on .work.no-intro .hscroll{margin-top:-96px}
 @media (max-width:640px){.gallery.trio{grid-template-columns:1fr}}
 .sec.alt .gi.flush .zoom{background:none}
 .gallery.trio .gi figcaption{margin-top:6px}
-.gallery.trio .gi figcaption b{display:block;margin:0 0 6px}
+.gallery.trio .gi figcaption b{display:block;margin:0 0 8px}
