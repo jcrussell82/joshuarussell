@@ -322,6 +322,17 @@ header.site .wrap,.sc,.seg{box-shadow:none!important}
 @media (max-width:700px){.ticker{--tk-size:56px;--tk-speed:150s;justify-content:space-evenly}}
 @media (prefers-reduced-motion:reduce){.tk-track{animation:none!important;transform:translate3d(-12%,0,0)}}
 /* /EXPERIMENT */
+
+/* about portrait: oval + cut-out photo + interactive dots */
+.me{margin:0;display:flex;justify-content:center}
+.me-art{width:min(118%,660px);height:auto;overflow:visible;margin-right:-9%}
+@media (max-width:860px){.me-art{width:min(100%,520px);margin:0}}
+.me-oval{fill:#E4EFFE}
+.me-float{animation:bob 8s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 60%}
+.md{fill:#fff;opacity:0;transform:translateY(14px);transform-box:fill-box;transition:opacity .6s ease var(--d),transform .8s cubic-bezier(.2,.7,.2,1) var(--d)}
+.me.in .md{opacity:.9;transform:none}
+.me.in .md.live{transition:none}
+@media (prefers-reduced-motion:reduce){.me-float{animation:none}.md{opacity:.9;transform:none;transition:none}}
 </style>
 <!-- Google Analytics (GA4) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JDF6C87JWF"></script>
@@ -529,7 +540,13 @@ document.addEventListener('submit',function(e){if(e.target&&e.target.id==='cform
         </div>
         <p>Before that I spent seven years at ADG Promo. Today I also lead <strong>Thinkigy</strong>, my independent studio, supporting select organizations with product design, websites and branding, and launching my own products with AI-assisted development.</p>
       </div>
-      <figure class="me rv"><img src="img/just-me.webp" alt="Joshua Russell" loading="lazy" width="640" height="640"></figure>
+      <figure class="me rv" aria-label="Joshua Russell">
+        <svg class="me-art" viewBox="0 0 640 660" role="img" aria-label="Joshua Russell">
+          <defs><clipPath id="me-clip"><path d="M0 -40H640V135H505V415A165 165 0 0 1 175 415V135H0Z"/></clipPath></defs>
+          <g class="me-dots"><circle class="md" cx="40" cy="34" r="4.2" style="--d:0ms"/><circle class="md" cx="106" cy="34" r="4.2" style="--d:45ms"/><circle class="md" cx="172" cy="34" r="4.2" style="--d:90ms"/><circle class="md" cx="238" cy="34" r="4.2" style="--d:135ms"/><circle class="md" cx="40" cy="100" r="4.2" style="--d:180ms"/><circle class="md" cx="106" cy="100" r="4.2" style="--d:225ms"/><circle class="md" cx="172" cy="100" r="4.2" style="--d:270ms"/><circle class="md" cx="238" cy="100" r="4.2" style="--d:315ms"/><circle class="md" cx="40" cy="166" r="4.2" style="--d:360ms"/><circle class="md" cx="106" cy="166" r="4.2" style="--d:405ms"/><circle class="md" cx="172" cy="166" r="4.2" style="--d:450ms"/><circle class="md" cx="40" cy="232" r="4.2" style="--d:495ms"/><circle class="md" cx="106" cy="232" r="4.2" style="--d:540ms"/><circle class="md" cx="172" cy="232" r="4.2" style="--d:585ms"/><circle class="md" cx="40" cy="298" r="4.2" style="--d:630ms"/><circle class="md" cx="106" cy="298" r="4.2" style="--d:675ms"/><circle class="md" cx="172" cy="298" r="4.2" style="--d:720ms"/><circle class="md" cx="536" cy="352" r="4.2" style="--d:885ms"/><circle class="md" cx="602" cy="352" r="4.2" style="--d:840ms"/><circle class="md" cx="536" cy="418" r="4.2" style="--d:795ms"/><circle class="md" cx="602" cy="418" r="4.2" style="--d:750ms"/><circle class="md" cx="536" cy="480" r="4.2" style="--d:705ms"/><circle class="md" cx="602" cy="480" r="4.2" style="--d:660ms"/><circle class="md" cx="470" cy="542" r="4.2" style="--d:615ms"/><circle class="md" cx="536" cy="542" r="4.2" style="--d:570ms"/><circle class="md" cx="602" cy="542" r="4.2" style="--d:525ms"/><circle class="md" cx="404" cy="604" r="4.2" style="--d:480ms"/><circle class="md" cx="470" cy="604" r="4.2" style="--d:435ms"/><circle class="md" cx="536" cy="604" r="4.2" style="--d:390ms"/><circle class="md" cx="602" cy="604" r="4.2" style="--d:345ms"/></g>
+          <g class="me-float"><rect class="me-oval" x="175" y="135" width="330" height="445" rx="165"/>
+            <image href="img/josh-cutout.webp" x="190" y="68" width="300" height="534" clip-path="url(#me-clip)"/></g>
+        </svg></figure>
     </div>
     <ul class="caps rv">
         <li><span class="ci" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg></span><b>Product &amp; UX design</b><span>Workflows, dashboards and complex data, desktop and mobile</span></li>
@@ -649,6 +666,21 @@ document.addEventListener('submit',function(e){if(e.target&&e.target.id==='cform
     ab.setAttribute('aria-expanded',o);p.classList.toggle('open',o);ab.querySelector('.lbl').textContent=o?'Hide archive':'Show archive';
     if(o)inn.removeAttribute('inert');else inn.setAttribute('inert','');});}
 
+
+  /* about portrait: dots ease away from the pointer, like the hero headline letters */
+  (function(){
+    var fig=document.querySelector('.me');if(!fig||reduce||!matchMedia('(hover:hover)').matches)return;
+    var svg=fig.querySelector('svg'),ds=[].slice.call(fig.querySelectorAll('.md')),st=ds.map(function(){return {x:0,y:0,tx:0,ty:0};}),mx=-1e4,my=-1e4,run=false;
+    function tick(){var r=svg.getBoundingClientRect(),k=r.width/640,R=150*k,moving=false;
+      ds.forEach(function(d,i){var cx=r.left+(+d.getAttribute('cx'))*k,cy=r.top+(+d.getAttribute('cy'))*k,dx=cx-mx,dy=cy-my,dist=Math.sqrt(dx*dx+dy*dy),s=st[i];
+        if(dist<R&&dist>0){var f=(1-dist/R)*34;s.tx=dx/dist*f;s.ty=dy/dist*f;}else{s.tx=0;s.ty=0;}
+        s.x+=(s.tx-s.x)*.14;s.y+=(s.ty-s.y)*.14;if(Math.abs(s.tx-s.x)>.05||Math.abs(s.ty-s.y)>.05)moving=true;
+        d.style.transform='translate('+(s.x/k).toFixed(2)+'px,'+(s.y/k).toFixed(2)+'px)';});
+      run=moving;if(run)requestAnimationFrame(tick);}
+    function kick(){ds.forEach(function(d){d.classList.add('live');});if(!run){run=true;requestAnimationFrame(tick);}}
+    fig.addEventListener('pointermove',function(e){if(!fig.classList.contains('in'))return;mx=e.clientX;my=e.clientY;kick();});
+    fig.addEventListener('pointerleave',function(){mx=my=-1e4;kick();});
+  })();
   /* testimonial slider */
   var qg=document.querySelector('.qgrid');
   if(qg){
