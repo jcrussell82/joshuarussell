@@ -339,3 +339,9 @@ html.h-on .work.no-intro .hscroll{margin-top:-96px}
 .sec.alt .gi.flush .zoom{background:none}
 .gallery.trio .gi figcaption{margin-top:6px}
 .gallery.trio .gi figcaption b{display:block;margin:0 0 8px}
+/* takeaway call-to-action buttons (DaySpear) */
+.take-btns{margin-top:32px}
+.takeaway .btn.ghost{color:#fff;border-color:rgba(255,255,255,.45)}
+.takeaway .btn.ghost:hover{background:rgba(255,255,255,.08);border-color:#fff}
+.brand-sec.alt{background:var(--mist)}
+.brand-sec.alt .b-hero .zoom,.brand-sec.alt .b-media .zoom{background:#fff}

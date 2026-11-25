@@ -162,6 +162,9 @@ a:hover .more::after{transform:translateX(4px)}
 .sc.tone-white{background:#fff}
 .sc.tone-mist{background:#DCE3F7}
 .sc.tone-navy{background:var(--navy);color:#fff}
+.sc.tone-green{background:#EAF6E8}
+.sc.tone-green .num,.sc.tone-green .more{color:#2F7A2D}
+.sc.tone-green .chips li{background:#fff}
 .sc.tone-navy p,.sc.tone-navy .num{color:var(--on-navy)}
 .sc.tone-navy .chips li{background:rgba(255,255,255,.08);color:#fff}
 .sc.tone-navy .more{color:#8EA6FF}
@@ -416,7 +419,7 @@ document.addEventListener('submit',function(e){if(e.target&&e.target.id==='cform
       
       <h2 id="h-work">Selected work</h2>
       <div class="seg" role="tablist" aria-label="Type of work">
-        <button role="tab" id="tab-product" aria-controls="deck-product" aria-selected="true" data-set="product">Product &amp; UX <span>4</span></button>
+        <button role="tab" id="tab-product" aria-controls="deck-product" aria-selected="true" data-set="product">Product &amp; UX <span>5</span></button>
         <button role="tab" id="tab-brand" aria-controls="deck-brand" aria-selected="false" tabindex="-1" data-set="brand">Art Direction <span>4</span></button>
         <i class="seg-pill" aria-hidden="true"></i>
       </div>
@@ -432,6 +435,16 @@ document.addEventListener('submit',function(e){if(e.target&&e.target.id==='cform
           <span class="more">View case study</span>
         </div>
         <div class="sc-media"><video muted loop playsinline preload="none" poster="img/goals-desktop-tour-poster.webp" data-src="video/goals-desktop-tour.mp4" aria-label="Walkthrough of the Goals.com manager dashboard prototype"></video><span class="tag"><i></i>Figma prototype</span></div>
+      </a>
+      <a class="sc tone-green" href="portfolio/dayspear/">
+        <div class="sc-text">
+          <div class="num">Workforce management SaaS</div>
+          <h3>DaySpear</h3>
+          <p>A self-initiated product that connects employee scheduling, shift coverage, team communication and daily operations in one streamlined experience for small businesses.</p>
+          <ul class="chips"><li>Product strategy</li><li>Workflow design</li><li>Desktop + mobile</li><li>Brand identity</li></ul>
+          <span class="more">View case study</span>
+        </div>
+        <div class="sc-media"><img src="img/dayspear.webp" alt="DaySpear schedule on desktop with the employee view on a phone" loading="lazy" style="object-position:78% 40%"><span class="tag"><i></i>Interactive prototype</span></div>
       </a>
       <a class="sc tone-mist" href="portfolio/651-carpets-platform/">
         <div class="sc-text">
