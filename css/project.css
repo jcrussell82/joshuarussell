@@ -345,3 +345,5 @@ html.h-on .work.no-intro .hscroll{margin-top:-96px}
 .takeaway .btn.ghost:hover{background:rgba(255,255,255,.08);border-color:#fff}
 .brand-sec.alt{background:var(--mist)}
 .brand-sec.alt .b-hero .zoom,.brand-sec.alt .b-media .zoom{background:#fff}
+/* DaySpear brand cards are meant to read as white tiles, so don't blend them into the frame */
+.b-media img[src*="dayspear/pattern"],.b-media img[src*="dayspear/type"]{mix-blend-mode:normal}
